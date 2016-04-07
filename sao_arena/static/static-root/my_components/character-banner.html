@@ -1,0 +1,133 @@
+{% load static %}
+<link ref="import" href="{%static 'bower_components/polymer/polymer.html'%}">
+<link ref="import" href="{%static 'bower_components/iron-ajax/iron-ajax.html'%}">
+<link ref="import" href="{%static 'bower_components/iron-image/iron-image.html'%}">
+<link rel="import" href="/static/my_components/health-bar.html">
+
+
+
+<dom-module id="character-banner">
+    <template>
+        <style>
+            :host {
+                padding-left: 20px;
+                display: block;
+                width: 850px;
+                background-color: black;
+                
+            }
+            
+            .selected {
+                border: 1px;
+                border-color: #ffff33;
+            }
+            .character-banner-container {
+                display: flex;
+                padding: 10px;
+            }
+            .character-image-container {
+                height: 175px;
+                width: 200px;
+                --iron-width: 100%;
+                --iron-height: 100%;
+                background-color: grey;
+                margin-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 0px;
+            }
+            .skills-image-container {
+                display: flex;
+                height: 150px;
+                width: 750px;
+                --iron-width: 100%;
+                --iron-height: 100%;
+                background-color: grey;
+                margin-right: 20px;
+                margin-top: 10px;
+                padding-bottom: 0px;
+            }
+            .image-container.character-banner {
+                display: flex;
+                width: 145px;
+                height: 145px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+            }
+            .game-image {
+                    width: 95%;
+                    height: 95%;
+                    padding: 5px;
+                    padding-bottom:0px;
+            }
+            
+            selected {
+                border: solid 2px;
+                border-color: yellow;
+            }
+            
+            paper-progress {
+                display:block;
+                --paper-progress-container-color: #64ffda;
+                --paper-progress-secondary-color: #f8bbd0;
+                --paper-progress-active-color: #e91e63;
+            }
+            
+        </style>
+        
+
+        <div class="character-banner-container">
+            <div class="character-image-container">
+                <div id="character-image-container" class="image-container">
+                    <iron-icon id="game-image" class="game-image" src="{{character}}" sizing="cover"></iron-icon>
+                </div>
+                <health-bar value="{{health}}"></health-bar>
+            </div>
+        
+            <div class="skills-image-container">
+                <div id="skill-image-container1" class="image-container">
+                    <iron-icon class="game-image" src="{{skill1}}" sizing="cover"></iron-icon>
+                </div>
+                <div id="skill-image-container2" class="image-container">
+                    <iron-icon class="game-image" src="{{skill2}}" sizing="cover"></iron-icon>
+                </div>
+                <div id="skill-image-container3" class="image-container">
+                    <iron-icon class="game-image" src="{{skill3}}" sizing="cover"></iron-icon>
+                </div>
+                <div id="skill-image-container4" class="image-container">
+                    <iron-icon class="game-image" src="{{skill4}}" sizing="cover"></iron-icon>
+                </div>
+            </div>
+        </div>
+
+        
+    </template>
+    
+    
+</dom-module>
+
+<script>
+    Polymer({
+            
+        is: 'character-banner',
+        click: function() {
+            alert("click");
+        },   
+        properties: {
+            character: String,
+            skill1: String,
+            skill2: String,
+            skill3: String,
+            skill4: String,
+            health: {
+                type: Number,
+                value: 100,
+            },
+        },    
+    });
+</script>
+
+<script>
+    document.querySelector('game-image').addEventListener('click', function (e) {
+        console.log(e.detail.kicked); // true
+    })
+</script>

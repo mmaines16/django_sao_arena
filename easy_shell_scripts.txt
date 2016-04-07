@@ -1,0 +1,16 @@
+from arena.models import *
+from game.models import *
+from game.tasks import *
+
+profile1 = PlayerProfile.objects.all()[0]
+profile2 = PlayerProfile.objects.all()[1]
+profile3 = PlayerProfile.objects.all()[2]
+profile4 = PlayerProfile.objects.all()[3]
+
+profile1
+profile2
+profile3
+profile4
+
+game1=Game.objects.all()[0]
+game2=Game.objects.all()[1]

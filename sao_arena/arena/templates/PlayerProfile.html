@@ -1,0 +1,110 @@
+{% extends 'base.html'%}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block jumbotron %}
+<div class="row" style="padding-left: 10px;">
+    <div class="col-md-6">
+        <h1>{{user.username}}</h1>
+    </div>
+</div>
+<div class="row" style="padding-left: 10px;">
+    <div class="col-md-3">
+        <img src="media/{{player.avatar}}/" style="padding-left: 10px; max-width: 200px; min-width: 300px; max-height: 300px; min-height: 300px;"/> 
+    </div>
+    <div class="col-md-4">
+        <div class="well">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4>Username: </h4>
+                    <h4>Level: </h4>
+                    <h4>Wins: </h4>
+                    <h4>Defeats: </h4>
+                    <h4>Win-Streak: </h4>
+                </div>
+                <div class="col-sm-6 col-sm-offset-1">
+                    <h4>{{user.username}}</h4>
+                    <h4>{{player.level}}</h4>
+                    <h4>{{player.wins}}</h4>
+                    <h4>{{player.defeats}}</h4>
+                    <h4>{{player.winstreak}}</h4>
+                </div>
+            </div>
+        </div>
+<!--        <div class="well">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4>First Name: </h4>
+                    <h4>Last Name: </h4>
+                    <h4>Email: </h4>
+
+                </div>
+                <div class="col-sm-6 col-sm-offset-1">
+                    <h4>{{user.first_name}}</h4>
+                    <h4>{{user.last_name}}</h4>
+                    <h4>{{user.email}}</h4>
+
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="col-md-4">
+        <h3>Current Characters</h3>
+        <div class="row">
+            {%for character in characters %}
+            <div class="col-sm-3">
+               <img src="/media/{{media}}{{character.image}}" style="max-width: 100px; min-width: 100px; max-height: 100px; min-height: 100px;"/>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+{% if editing %}
+<!--<h3>{{post}}</h3> -->
+<div class="panel panel-info" style="padding-left: 10px;">
+    <div class="panel panel-heading">
+        <h2>Edit Profile Information</h2>
+    </div>
+    <div class="panel panel-body">
+        <!--<h3>Personal Info</h3>
+        <div class="well">
+            <form method="post" action="profile">
+                {% csrf_token %}
+                {{ user_form|crispy }}
+                <input class="btn btn-block" name="submit_changes" type="submit" value="Submit Changes"/>
+            </form>
+        </div>
+        -->
+        <div class="well">
+            <img src="media/{{player.avatar}}/" style="max-width: 100px; min-width: 100px; max-height: 100px; min-height: 100px;"/>
+            <form method="post" action="profile">
+                {% csrf_token %}
+                {{ player_form|crispy }}
+                <input class="btn btn-block" name="submit_img" type="submit" value="Submit"/>
+            </form>
+            <form method="get" action="profile" style="padding-top: 10px;">
+             {% csrf_token %}
+            <input class="btn btn-block" name="submit_cancel" type="submit" value="Cancel Edit"/>
+        </form>
+        </div>
+
+    </div>
+</div>
+{% else %}
+<div class="row" style="padding-left: 10px;">
+    <div class="col-xs-12">
+        <form method="post" action="profile">
+             {% csrf_token %}
+            <input class="btn btn-block" name="submit_edit" type="submit" value="Edit Profile"/>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+
+{% endblock %}

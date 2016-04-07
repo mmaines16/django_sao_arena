@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block heading %}
+    <style type="text/css">
+        
+        img.thumbnail {
+            max-height: 50%;
+            max-width: 50%;
+}
+        }
+        
+        .case{
+            background-color: black;
+        }
+        
+        
+    </style>
+    
+{% endblock %}
+
+{% block jumbotron %}
+    
+    <h1>{{ character.name }}</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <img src="/media/{{character.image}}" style="max-width 200px; max-height: 200px;"/>
+        </div>
+        <div class="col-md-10">
+            <p>{{ character.description }}</p>
+        </div>
+    </div>
+
+    
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="panel">
+    <div class="panel-head">
+        <h2>Skills</h2>
+    </div>
+    
+    <div class="panel-body case">    
+        <div class="well">
+            <div class="row"> 
+                {% for skill in skill_set %}
+                    <div class="col-md-6">
+                        <div class="panel" style="min-height: 600px">
+                            <div class="panel-heading">
+                                <p style="font-size: large; font-style: oblique;">{{ skill.name }}</p>
+                                <img class="thumbnail" src="/media/{{skill.image}}" style="max-width 200px; max-height: 200px;">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Energy Cost: </p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                    {% for energy in skill.energy.all%}
+                                        {% if energy.amount == 2 %}
+                                                {% if 'Green' in energy.color %}
+                                                    <div class="thumbnail" style="background-color: green; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                    <div class="thumbnail" style="background-color: green; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                {%endif%}
+                                                {% if 'Red' in energy.color %}
+                                                    <div class="thumbnail" style="background-color: red; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                    <div class="thumbnail" style="background-color: red; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                {%endif%}
+                                                {% if 'Blue' in energy.color %}
+                                                    <div class="thumbnail" style="background-color: blue; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                    <div class="thumbnail" style="background-color: blue; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                {%endif%}
+                                                {% if 'White' in energy.color %}
+                                                    <div class="thumbnail" style="background-color: white; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                    <div class="thumbnail" style="background-color: white; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                {%endif%}
+                                                {% if 'Black' in energy.color %}
+                                                    <div class="thumbnail" style="background-color: black; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                    <div class="thumbnail" style="background-color: black; min-width: 20px; min-height: 20px;
+                                                    max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                                {%endif%}
+                                        {% else %}
+                                            <div class="thumbnail" style="background-color: {{ energy.color }}; min-width: 20px; min-height: 20px;
+                                            max-height: 20px; max-width: 20px; display: inline-block"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Cooldown: </p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p stlye="font-size: larger;">{{skill.cooldown}} turns</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <p>{{ skill.description }}</p>
+                                </div>
+                                <div class="row">
+                                    <div class=col-md-3">
+                                        <p>Skill Types: </p>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <ul style="display: inline-block;">
+                                            {% for skill_type in skill.skill_types.all %}
+                                                {% if skill_type != skill.skill_types.last %}
+                                                    <li style="display: inline-block;">{{ skill_type.name }}, </li>
+                                                {% else %}
+                                                    <li style="display: inline-block;">{{ skill_type.name }}</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+
+
+{% block footing %}
+{% endblock %}

@@ -1,0 +1,88 @@
+<dom-module id="health-bar">
+    <template>
+        <style>
+            :host {
+                height: 15px;
+                width: 150px;
+            }
+            
+            .progress-background {
+                height: 15px;
+                width: 150px;
+                background-color: #333333;
+                border: 1px;
+                border-bottom-color: black;
+                margin-left: 10px;
+            }
+            
+            .progress {
+                background-color: green;
+                text-align: center;
+                width: 150px;
+                height: 15px;
+                z-index: 1;
+            }
+            .value {
+                position: absolute;
+                margin-top: -15px;
+                text-align: center;
+                width: 150px;
+                height: 15px;
+                z-index: 2;
+            }
+        </style>
+        
+        
+        <div class="progress-background">
+            <div id="healthBar" class="progress"></div>
+            <div id="healthValue" class="value">
+                {{value}}
+            </div>
+        </div>
+        
+    </template>
+    
+    
+</dom-module>
+
+<script>
+    Polymer({
+            
+        is: 'health-bar',
+                
+        properties: {
+            value: {
+                type: Number,
+                value: 100,
+                observer: 'valueChanged',
+            },
+            color: {
+                type: String,
+                //readOnly: True,
+            },
+
+        },
+
+        valueChanged: function(newValue)
+        {
+            if (newValue < 31) {
+                
+                this.color = "#ff0000";
+            }
+            else if (newValue < 80) {
+                this.color = "#ffff00";
+            }
+            else {
+                this.color = "#00e600";
+            }
+            
+            this.value = newValue;
+            
+            var width = (newValue/100)*150;
+            
+            this.$.healthBar.style.width = String(width) + "px";
+            this.$.healthBar.style.backgroundColor = this.color;
+        }
+        
+    });
+</script>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game Setup</title>
+        
+        {% load static %}
+        <script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+        <script src="{% static 'js/gamesetup.js' %}"></script>
+        
+        <style>
+            .game-home {
+                background: url(http://localhost:8000/static/img/backgrounds/duel.jpg) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                
+                min-height: 500px;
+                min-width: 700px;
+                
+                color: white;
+                
+            }
+            
+            .game-start {
+                background: url(http://localhost:8000/static/img/backgrounds/IG-BACK1.jpg) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                
+                min-height: 500px;
+                min-width: 700px;
+                
+                color: white;
+                
+            }
+            
+            img.thumbnail {
+            max-height: 50%;
+            max-width: 50%;
+}
+            }
+            
+            img.bg {
+                /* Set rules to fill background */
+                min-height: 100%;
+                min-width: 1024px;
+                  
+                /* Set up proportionate scaling */
+                width: 100%;
+                height: auto;
+                  
+                /* Set up positioning */
+                position: fixed;
+                top: 0;
+                left: 0;
+              }
+              
+              @media screen and (max-width: 1024px) { /* Specific to this particular image */
+                img.bg {
+                  left: 50%;
+                  margin-left: -512px;   /* 50% */
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!--<img class="img.bg" src="{%static 'img/backgrounds/duel.jpg'%}"/>-->
+        <div id="game-home" class="game-home">
+            <h1>Welcome {{player.user.username}}!</h1>
+            
+            <div id="content" style="position: fixed; bottom: 250px; left: 50px;">
+                <span id="player_id" style="visibility: hidden">{{player.id}}</span>
+                <h3>Join A Game</h3>
+                <!--<p>Player_id: {{player.id}}</p>
+                <button value="Join Game" onclick=loadGameJSON({{player.id}})>Join Game</button>
+                -->
+                <form id="join-game-form" method='POST' action='{{join_url}}' target="hidden-frame">
+                    {% csrf_token %}                
+                    <input class="btn" id="join_button" name="join_game" type="submit" value="Join Game" onclick=loadGameJSON({{player_id}})/>
+                </form>
+                <span style="visibility: hidden">
+                    <iframe id="hidden-frame" width="0", height="0", border="0", name="hidden-frame"></iframe>
+                </span>
+                <!--<button id="getJSON" onclick=getGameJSON({{player.id}}) value="Get Game Info"></button>-->
+                      
+            </div>
+        </div>
+        
+        
+        <div id="game-start" class="game-start" style="visibility: hidden;">
+            <div id="JSON">
+               <h1>Game Ready!</h1>
+               <h3>Click the button below to proceed to the game!</h3>
+                <form id="join-game-form" method='POST' action='{{join_url}}' target="hidden-frame">
+                    {% csrf_token %}                
+                    <input class="btn" id="start_button" name="start_game" type="submit" value="Start Game" action="{{start_url}}"/>
+                </form>
+            </div>
+            
+            
+            
+            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+<link ref="import" href="{{static 'bower_components/polymer/polymer.html'}}">
+<link ref="import" href="{{static 'bower_components/iron-ajax/iron-ajax.html'}}">
+
+<dom-module id="game-list">
+    <template>
+        <style>
+            :host {
+                display: block
+                box-sizing: border-box;
+            }
+        </style>
+        
+        {% verbatim %}
+        <iron-ajax
+            auto
+            url="http://localhost:8000/api/game/games"
+            handle-as="json"
+            last-response="{{response}}"
+            debounce-duration="300">
+        </iron-ajax>
+        
+        <template is="dom-repeat" items="{{response}}">
+            <div>
+                <p>{{item.id}}</p>
+                <p>{{item.player_1}}</p>
+                <p>{{item.player_2}}</p>
+            </div>
+        </template>
+        {% endverbatim %}
+    </template>
+    
+    
+</dom-module>
+
+<script>
+    Polymer({
+            
+        is: 'game-list',
+                
+        properties: {
+                    
+        }
+                
+    });
+</script>

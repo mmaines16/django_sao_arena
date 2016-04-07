@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block jumbotron %}
+
+<div class="row" style="border-radius: 25px;">
+<div class='col-sm-2 col-sm-offset-2' style="background-color: #195E8D; max-height: 550px; min-height: 550px; border-radius: 25px;">
+    <h2 style="color: white;">Register_::</h2>
+</div>
+<div class='col-sm-4' style="padding-top: 20px; margin-left: -50px; background-color: #195E8D;  min-width: 550px; max-height: 550px; min-height: 550px; border-radius: 25px;">
+<form method="post" action=".">
+    {% csrf_token %}
+  <div class="col-md-12" style="margin-top: 25px; max-width: 350px; color: white; font-size: medium;">
+  {{ form|crispy }}
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div class="col-sm-4 col-sm-offset-6" >
+      <input class='btn btn-block' type="submit" value="{% trans 'Join' %}" />
+    </div>
+  </div>
+</form>
+</div>
+
+</div>
+<hr/>
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3 text-align-center'>
+<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+</div>
+</div>
+
+{% endblock %}

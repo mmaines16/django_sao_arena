@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>SAO Arena Characters</h1>
+            <p>a list of all characters</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+{% for character in characters %}
+
+<div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href="/game-manual/characters/{{character.slug}}"><h2>{{ character.name }}</h2></a></div>
+      <div class="panel-body">
+        <div class="thumbnail col-md-2">
+            <a href="/game-manual/characters/{{character.slug}}"><img src="/media/{{ character.image }}" style="max-height: 100px; max-width: 100px;"/></a>
+        </div>
+        <div class="container col-md-10">
+            <p>{{ character.description }}</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

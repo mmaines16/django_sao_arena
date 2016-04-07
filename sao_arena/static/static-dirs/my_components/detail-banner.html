@@ -1,0 +1,91 @@
+{% load static %}
+<link ref="import" href="{%static 'bower_components/polymer/polymer.html'%}">
+<link ref="import" href="{%static 'bower_components/iron-ajax/iron-ajax.html'%}">
+<link ref="import" href="{%static 'bower_components/iron-image/iron-image.html'%}">
+
+<dom-module id="character-banner">
+    <template>
+        <style>
+            :host {
+                padding-left: 20px;
+                display: block;
+                width: 850px;
+                background-color: black;
+                
+            }
+            .character-banner-container {
+                display: flex;
+                padding: 10px;
+            }
+            .image-container {
+                height: 175px;
+                width: 200px;
+                --iron-width: 100%;
+                --iron-height: 100%;
+                background-color: grey;
+                margin-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 0px;
+            }
+            .skills-image-container {
+                display: flex;
+                height: 150px;
+                width: 750px;
+                --iron-width: 100%;
+                --iron-height: 100%;
+                background-color: grey;
+                margin-right: 20px;
+                margin-top: 10px;
+                padding-bottom: 0px;
+            }
+            .image-container.character-banner {
+                display: flex;
+                width: 145px;
+                height: 145px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+            }
+            .game-image {
+                    width: 95%;
+                    height: 95%;
+                    padding: 5px;
+                    padding-bottom:0px;
+            }
+        </style>
+        
+
+        <div class="character-banner-container">
+            <div class="character-image-container">
+                <div class="image-container">
+                    <iron-icon class="game-image" src="{{character}}" sizing="cover"></iron-icon>
+                </div>
+                <health-bar></health-bar>
+            </div>
+        
+            <div class="skills-image-container">
+                <div class="content">
+                    {{content}}
+                </div>
+        </div>
+
+        
+    </template>
+    
+    
+</dom-module>
+
+<script>
+    Polymer({
+            
+        is: 'character-banner',
+                
+        properties: {
+            character: String,
+            skill1: String,
+            skill2: String,
+            skill3: String,
+            skill4: String,
+        }
+                
+    });
+</script>

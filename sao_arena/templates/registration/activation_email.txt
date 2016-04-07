@@ -1,0 +1,13 @@
+{% load i18n %}
+{% trans "Activate account at" %} sao-arena.com:
+
+Link Start!
+
+Click the link below to activate your account.
+
+http://127.0.0.1:8000/{% url 'registration_activate' activation_key %}
+
+
+{% blocktrans %}The above link is valid for {{ expiration_days }} days.{% endblocktrans %}
+
+-Team SAO-Arena
