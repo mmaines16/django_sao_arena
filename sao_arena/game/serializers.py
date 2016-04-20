@@ -59,6 +59,7 @@ class PlayerSerializer(ModelSerializer):
             'active_character_1',
             'active_character_2',
             'active_character_3',
+            'energy_store',
             'dead_characters',
             'is_turn',
         )

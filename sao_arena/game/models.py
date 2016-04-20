@@ -1,5 +1,5 @@
 from django.db import models
-from arena.models import Character, Effect, Skill, PlayerProfile
+from arena.models import Character, Effect, Energy, Skill, PlayerProfile
 
 import random
 
@@ -46,6 +46,7 @@ class Player(models.Model):
     active_character_1 = models.ForeignKey('Character_Stats', blank=False, related_name='_active_character_1')
     active_character_2 = models.ForeignKey('Character_Stats', blank=False, related_name='_active_character_2')
     active_character_3 = models.ForeignKey('Character_Stats', blank=False, related_name='_active_character_3')
+    energy_store = models.ManyToManyField(Energy, related_name="_energy_store")
     dead_characters = models.ManyToManyField('Character_Stats', blank=True, related_name='_dead_characters')
     is_turn = models.BooleanField(blank=False, null=False, default=False)
     #game = models.ForeignKey('Game', null=True, blank=True)
