@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^players/(?P<pk>\d+)/$', PlayerViewDetail.as_view(), name='player-detail'),
     
     url(r'player/update/(?P<pk>\d+)/$', in_game_details, name='player-update'),
+    url(r'player/endturn/(?P<pk>\d+)/$', end_turn, name='player-end-turn'),
 ]

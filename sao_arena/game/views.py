@@ -91,3 +91,4 @@ def game_start_view(request, pk):
                                           'opp_char1': opp_char1, 'opp_char2': opp_char2, 'opp_char3': opp_char3,
                                           'opp_skills1': opp_skills1, 'opp_skills2': opp_skills2,
                                           'opp_skills3': opp_skills3, 'lookup_id': lookup_id})
+

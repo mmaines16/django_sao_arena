@@ -124,4 +124,35 @@ def in_game_details(request, pk):
             #serializer.save()
             #return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'POST'])
+def end_turn(request, pk):
+    """
+    End Turn and update player model.
+    """
+    if request.method == 'GET':
+         try:
+             player = Player.objects.get(id=pk);
+             
+             c1_health= player.active_character_1.health
+             c2_health= player.active_character_2.health
+             c3_health= player.active_character_3.health
+             
+             player.energy_store.add(Energy.objects.get(id=1))
+             
+             
+             serialized_player = PlayerSerializer(player)
+             
+             return Response({"player": serialized_player.data});
+         except:
+             raise Http404
+        
+         return Response(status=404)
+
+
+    elif request.method == 'POST':
+        message = request.data['message']
+        
+        return Response({"recieved_message": message})
 
