@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "sao_arena/static/static-dirs/bower_components/promise-polyfill/package.json",
+        "sao_arena/static/static-dirs/bower_components/webcomponentsjs/package.json",
+        "sao_arena/static/static-root/bower_components/promise-polyfill/package.json",
+        "sao_arena/static/static-root/bower_components/webcomponentsjs/package.json"
+      ]
+    }
+  }
+}
